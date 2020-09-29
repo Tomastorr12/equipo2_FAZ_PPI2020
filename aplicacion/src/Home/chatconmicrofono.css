@@ -1,0 +1,40 @@
+.Medio{
+  background-color: #F5F5F5;
+}
+
+.Cabecera{
+  background-color: #bbbbbb;
+}
+
+.Regresar{
+  background: none;
+  border: none;
+}
+.Fotodeperfil{
+  border-radius: 100%;
+  background-color: #d7e2e4;
+  margin-top: 3%;
+  margin-left: 3%;
+  margin-bottom: 0.5%;
+
+}
+.Abajo{
+  background-color: #F5F5F5;
+}
+
+.Nombre{
+  color: #ffffff;
+  padding-left: 30px;
+  font-size: 170%
+}
+
+.Logotransparente{
+  opacity:0.4;
+  margin:25% ;
+}
+
+.Microfono{
+  border: none;
+  background: none;
+  margin-left: 40%;
+}
