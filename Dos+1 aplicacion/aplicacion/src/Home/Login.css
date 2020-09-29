@@ -1,0 +1,46 @@
+.login-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button1{
+    background-color: #5F91F3;
+    border: none;
+    color: #FFFFFF;
+    border-radius: 100px;
+    padding-left: 23px;
+    padding-right: 23px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 25px;
+    margin:25px;
+    text-align: center;
+}
+.button2{
+    background-color: #FFFFFF;
+    border: none;
+    margin: 10px;
+    color: #5F91F3;
+    font-size: 15px;
+    align-self: center;
+    margin-left: 70px;
+}
+.button3{
+    background-color: #FFFFFF;
+    border: none;
+    margin: 10px;
+    color: #B4B4B4;
+    font-size: 15px;
+    margin-left: 50px;
+    
+}
+.label-alert{
+    color: red;
+}
+.registrate{
+    color: #5F91F3;
+    text-align: center;
+    font-size: 18px;
+}

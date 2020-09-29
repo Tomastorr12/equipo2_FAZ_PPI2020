@@ -1,0 +1,32 @@
+
+.logomenu{
+    padding-left: 20%;
+}
+
+.botoncambio{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius:10px ;
+    border: none;
+   margin-left: auto;
+   margin-right: auto;
+   font-size: 20px;
+}
+
+.botoncambio2{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius:10px ;
+    border: none;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 55px;
+   font-size: 20px;
+}
+
+.eligeconquien{
+    text-align: center;
+    color: #505050;
+}
