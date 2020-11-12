@@ -1,0 +1,40 @@
+.input-container{
+    width: 100%;
+}
+
+.regular-style{
+    background-color: #F0F0F0;
+    border: none;
+    color: #CACACA;;
+    border-radius: 100px;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-top: 6%;
+    padding-bottom: 6%;
+    font-size: 18px;
+    margin:10px;
+    margin-left:100px;
+    
+}
+
+.regular-style::placeholder{
+    color: #CACACA;
+    font-size: 14px;
+}
+
+.inputError{
+    background-color: #f0d6d6;
+    border: red;
+    color: red;;
+    border-radius: 100px;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-top: 6%;
+    padding-bottom: 6%;
+    font-size: 18px;
+    margin:25px;
+}
+
+.inputError::placeholder{
+    color: red;;
+}
