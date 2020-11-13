@@ -4,7 +4,7 @@ const mysqlConnection  = require('../db/db');
 
 router.get('/', (req, res) => {
      
-    mysqlConnection.query('SELECT * FROM Usuario ', 
+    mysqlConnection.query('SELECT * FROM usuario ', 
     (err, rows,
       fields) => {
         if (!err) {
@@ -16,9 +16,9 @@ router.get('/', (req, res) => {
 });
   
 
-router.get('/Usuarios/:id;', (req, res) => {
+router.get('/usuarios/:id;', (req, res) => {
   const { id } = req.params; 
-  mysqlConnection.query(`SELECT * FROM Usuario
+  mysqlConnection.query(`SELECT * FROM usuario
   WHERE id = ?`, [id],
   (err, rows, fields) => {
     if (!err) {
@@ -33,32 +33,32 @@ router.post('/nuevo-usuario',(req,res)=>{
   const {nombre,id_comunidad,perfil,correo,contraseña,
  id_usuario} = req.body;
   
- let datosUsuario = [nombre,id_comunidad,perfil,correo,
+ let datosusuario = [nombre,id_comunidad,perfil,correo,
     contraseña,id_usuario];
 
-  let nuevoUsuario = `INSERT INTO Usuarios(nombre,
+  let nuevousuario = `INSERT INTO usuarios(nombre,
     id_comunidad,perfil,correo,
     contraseña,id_usuario) VALUES(?,?,?,?,?,?)`;
-  mysqlConnection.query(nuevoUsuario, datosUsuario, (err, results,
+  mysqlConnection.query(nuevousuario, datosusuario, (err, results,
     fields) => {
     if (err) {
       return console.error(err.message);
     }
-    res.json({ message:`Usuarios registrados`, })
+    res.json({ message:`usuarios registrados`, })
     });
   });  
   
-router.put('/Usuarios/:id', (req, res) => {
+router.put('/usuarios/:id', (req, res) => {
   const {nombre,id_comunidad,perfil,correo,contraseña,
   } = req.body;
   const { id } = req.params;
-  mysqlConnection.query(`UPDATE Usuarios SET nombre =?,
+  mysqlConnection.query(`UPDATE usuarios SET nombre =?,
      id_comunidad = ?, perfil = ?,correo = ?,contraseña = ? WHERE id = ?`, 
       [nombre,id_comunidad,perfil,correo,contraseña,
         ], 
         (err, rows, fields) => {
           if(!err) {
-            res.json({status: 'Usuario actualizado'});
+            res.json({status: 'usuario actualizado'});
           } else {
             console.log(err);
         }
@@ -67,11 +67,11 @@ router.put('/Usuarios/:id', (req, res) => {
   
 router.delete('/usuario/:id', (req, res) => {
     const { id } = req.params;
-    mysqlConnection.query(`DELETE FROM Usuario
+    mysqlConnection.query(`DELETE FROM usuario
      WHERE id = ?`,
      [id], (err, rows, fields) => {
       if(!err) {
-        res.json({status: 'Usuario eliminado'});
+        res.json({status: 'usuario eliminado'});
       } else {
         console.log(err);
       }

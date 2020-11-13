@@ -4,7 +4,7 @@ const mysqlConnection  = require('../db/db');
 
 router.get('/', (req, res) => {
      
-    mysqlConnection.query('SELECT * FROM Conversacion ', 
+    mysqlConnection.query('SELECT * FROM conversacion ', 
     (err, rows,
       fields) => {
         if (!err) {
@@ -16,9 +16,9 @@ router.get('/', (req, res) => {
 });
   
 
-router.get('/Conversacions/:id;', (req, res) => {
+router.get('/conversacions/:id;', (req, res) => {
   const { id } = req.params; 
-  mysqlConnection.query(`SELECT * FROM Conversacion
+  mysqlConnection.query(`SELECT * FROM conversacion
   WHERE id = ?`, [id],
   (err, rows, fields) => {
     if (!err) {
@@ -29,49 +29,49 @@ router.get('/Conversacions/:id;', (req, res) => {
   });
 });  
   
-router.post('/nuevo-Conversacion',(req,res)=>{  
+router.post('/nuevo-conversacion',(req,res)=>{  
   const {Codigo_qr,id_usuario1,id_usuario2,Fecha_systema,
 } = req.body;
   
- let datosConversacion = [Codigo_qr,id_usuario1,id_usuario2,Fecha_systema,
+ let datosconversacion = [Codigo_qr,id_usuario1,id_usuario2,Fecha_systema,
 ];
 
-  let nuevoConversacion = `INSERT INTO Conversacions(Codigo_qr,
+  let nuevoconversacion = `INSERT INTO conversacions(Codigo_qr,
     id_usuario1,id_usuario2,Fecha_systema,
 ) VALUES(?,?,?,?,?,?)`;
-  mysqlConnection.query(nuevoConversacion, datosConversacion, (err, results,
+  mysqlConnection.query(nuevoconversacion, datosconversacion, (err, results,
     fields) => {
     if (err) {
       return console.error(err.message);
     }
-    res.json({ message:`Conversacions registrados`, })
+    res.json({ message:`conversacions registrados`, })
     });
   });  
   
-router.put('/Conversacion/:id', (req, res) => {
+router.put('/conversacion/:id', (req, res) => {
   const {Codigo_qr,id_usuario1,id_usuario2,Fecha_systema,
   } = req.body;
   const { id } = req.params;
-  mysqlConnection.query(`UPDATE Conversacions SET Codigo_qr =?,
+  mysqlConnection.query(`UPDATE conversacion SET Codigo_qr =?,
      id_usuario1 = ?, id_usuario2 = ?,Fecha_systema = ? = ? WHERE id = ?`, 
       [Codigo_qr,id_usuario1,id_usuario2,Fecha_systema,
         ], 
         (err, rows, fields) => {
           if(!err) {
-            res.json({status: 'Conversacion actualizado'});
+            res.json({status: 'conversacion actualizado'});
           } else {
             console.log(err);
         }
       });
 });
   
-router.delete('/Conversacion/:id', (req, res) => {
+router.delete('/conversacion/:id', (req, res) => {
     const { id } = req.params;
-    mysqlConnection.query(`DELETE FROM Conversacion
+    mysqlConnection.query(`DELETE FROM conversacion
      WHERE id = ?`,
      [id], (err, rows, fields) => {
       if(!err) {
-        res.json({status: 'Conversacion eliminado'});
+        res.json({status: 'conversacion eliminado'});
       } else {
         console.log(err);
       }
