@@ -1,30 +1,32 @@
 const express = require('express');
 const app = express();
-const routes = require('./routes/routes.js');
+const usersRouter = require('./routes/usuaios'); //Ruta o rutas de donde se conectara
 
 // Ajustes
-app.set('port',3000);
+app.set('port', 3000 || 8080);
 
 // Middlewares
 app.use(express.json());
 
 
-
-app.use('/api',routes);
+// Acá agregamos las nuevas rutas
+app.use('/', usersRouter);
+// app.use('/', historyRouter);
+// app.use('/', chatRouter);
 
 
 
 // Routes//
-app.get('/', (req,res)=>{
-  res.send('pagina de inicio')
-})
+// app.get('/', (req, res) => {
+//     res.send('pagina de inicio')
+// })
 
-app.set('json spaces',2);
+app.set('json spaces', 2);
 //require ('dotenv').config
 
 
 
 // Ajustes del servidor
 app.listen(app.get('port'), () => {
-  console.log(`Servidor corriendo en el puerto ${app.get('port')}`);
-}); 
+    console.log(`Servidor corriendo en el puerto ${app.get('port')}`);
+});

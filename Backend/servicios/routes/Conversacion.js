@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 });
   
 
-router.get('/conversacions/:id;', (req, res) => {
+router.get('/conversacion/:id;', (req, res) => {
   const { id } = req.params; 
   mysqlConnection.query(`SELECT * FROM conversacion
   WHERE id = ?`, [id],
