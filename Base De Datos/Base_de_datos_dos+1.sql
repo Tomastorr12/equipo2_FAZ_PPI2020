@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: btnntwo1tjg7uzvjhiwc-mysql.services.clever-cloud.com:3306
--- Generation Time: Nov 13, 2020 at 02:53 PM
+-- Generation Time: Nov 19, 2020 at 01:43 PM
 -- Server version: 8.0.15-5
 -- PHP Version: 7.2.34
 
@@ -39,9 +39,8 @@ CREATE TABLE `comunidad` (
 
 INSERT INTO `comunidad` (`id_comunidad`, `descripcion`) VALUES
 (1, 'ciego'),
-(2, 'sordos'),
-(3, 'mudo'),
-(4, 'sordo-mudo');
+(2, 'sordo-mudo'),
+(3, 'Sin discapacidad');
 
 -- --------------------------------------------------------
 
@@ -50,18 +49,18 @@ INSERT INTO `comunidad` (`id_comunidad`, `descripcion`) VALUES
 --
 
 CREATE TABLE `conversacion` (
-  `Codigo_qr` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `Id_usuario1` int(11) DEFAULT NULL,
   `Id_usuario2` int(11) DEFAULT NULL,
-  `Fecha_sistema` date DEFAULT NULL
+  `Fecha` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `conversacion`
 --
 
-INSERT INTO `conversacion` (`Codigo_qr`, `Id_usuario1`, `Id_usuario2`, `Fecha_sistema`) VALUES
-(1, 1, 1, '2020-11-12'),
+INSERT INTO `conversacion` (`id`, `Id_usuario1`, `Id_usuario2`, `Fecha`) VALUES
+(1, 1, 4, '2020-11-12'),
 (2, 2, 3, '2020-11-11');
 
 -- --------------------------------------------------------
@@ -71,7 +70,7 @@ INSERT INTO `conversacion` (`Codigo_qr`, `Id_usuario1`, `Id_usuario2`, `Fecha_si
 --
 
 CREATE TABLE `historial` (
-  `id_historial` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `Codigo_qr` int(11) DEFAULT NULL,
   `registro_Chat` varchar(225) NOT NULL,
   `Fecha_sistema` timestamp NULL DEFAULT CURRENT_TIMESTAMP
@@ -81,7 +80,7 @@ CREATE TABLE `historial` (
 -- Dumping data for table `historial`
 --
 
-INSERT INTO `historial` (`id_historial`, `Codigo_qr`, `registro_Chat`) VALUES
+INSERT INTO `historial` (`id`, `Codigo_qr`, `registro_Chat`) VALUES
 (1, 1, 'fddfdfdfdf'),
 (2, 2, 'asasasaaaaaaaaaaaaaaaaaaaaa'),
 (3, 1, 'hablmos otro dia');
@@ -93,7 +92,7 @@ INSERT INTO `historial` (`id_historial`, `Codigo_qr`, `registro_Chat`) VALUES
 --
 
 CREATE TABLE `usuarios` (
-  `Id_usuario` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `id_comunidad` int(11) DEFAULT '1',
   `nombre` varchar(25) DEFAULT NULL,
   `perfil` int(15) DEFAULT NULL,
@@ -105,11 +104,11 @@ CREATE TABLE `usuarios` (
 -- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`Id_usuario`, `id_comunidad`, `nombre`, `perfil`, `correo`, `contraseña`) VALUES
-(1, 1, 'asasa', 1, 'jua3n@gmail.com', '123'),
+INSERT INTO `usuarios` (`id`, `id_comunidad`, `nombre`, `perfil`, `correo`, `contraseña`) VALUES
+(1, 2, 'asasa', 1, 'jua3n@gmail.com', '123'),
 (2, 1, 'asasa', 1, 'jua2n@gmail.com', '123'),
 (3, 1, 'Administrador', 1, 'admin122@gmail.com', '123'),
-(9, 1, 'Maria', 2, 'Maria@gmail.com', '123');
+(9, 3, 'Maria', 2, 'Maria@gmail.com', '123');
 
 --
 -- Indexes for dumped tables
@@ -125,22 +124,23 @@ ALTER TABLE `comunidad`
 -- Indexes for table `conversacion`
 --
 ALTER TABLE `conversacion`
-  ADD PRIMARY KEY (`Codigo_qr`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `historial`
 --
 ALTER TABLE `historial`
-  ADD PRIMARY KEY (`id_historial`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`Id_usuario`),
-  ADD UNIQUE KEY `Id_usuario` (`Id_usuario`),
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `Id_usuario` (`id`),
   ADD UNIQUE KEY `correo` (`correo`),
-  ADD UNIQUE KEY `correo_2` (`correo`);
+  ADD UNIQUE KEY `correo_2` (`correo`),
+  ADD KEY `id_comunidad` (`id_comunidad`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -156,19 +156,29 @@ ALTER TABLE `comunidad`
 -- AUTO_INCREMENT for table `conversacion`
 --
 ALTER TABLE `conversacion`
-  MODIFY `Codigo_qr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `historial`
 --
 ALTER TABLE `historial`
-  MODIFY `id_historial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `Id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `id_comunidad` FOREIGN KEY (`id_comunidad`) REFERENCES `comunidad` (`id_comunidad`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
